@@ -1,0 +1,9 @@
+Console.WriteLine("hello world!");
+
+Console.WriteLine("");
+
+Console.WriteLine("Arguments: ");
+foreach (var arg in args)
+{
+    Console.WriteLine(arg);
+}
