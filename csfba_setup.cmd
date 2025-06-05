@@ -29,15 +29,15 @@ reg add "HKEY_CURRENT_USER\Software\Classes\%newextension%" /f /ve /t REG_SZ /d 
 echo,
 
 echo adding %newextension% to system %%PATHEXT%% variable ^(i.e. auto execute without providing extension, just like .bat, etc^)
-echo   apparently PATHEXT doesn't auto-combine like PATH so we modify the singular system version
-rem setxx is a safe windows variable setting tool i whipped up with copilot in golang, could've used this years ago!!
+echo   my observation was setting PATHEXT user value would OVERRIDE, not combine with, the default system list of extensions, so this modifies the main system version
+rem setxx is a windows variable setting tool i whipped up with copilot in golang
 rem github repo: https://github.com/Beej126/setxx/releases
 rem -s means system var
 rem -u upper cases the value
 setxx -s -u add %newextension% pathext
 echo,
 
-echo adding this folder to user %%PATH%% so ProcessInfo.exe can be found by runner script
+echo adding this folder to user %%PATH%% so pids.exe can be found by runner script (see repo readme notes re this OPTIONAL dependency)
 setxx add %~dp0 path
 echo,
 
