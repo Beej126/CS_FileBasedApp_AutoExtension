@@ -19,8 +19,7 @@ dotnet run %runfile% %_args%
 :: clean up the temporary file
 rm %runfile%
 
-:: pids.exe is a quick util whipped up with copilot to set %PID%, %PPID% and %ParentProcessName%
-:: so we can know whether launched from explorer.exe and hold the console open to view any output
-:: github repo: https://github.com/Beej126/pids/releases/tag/v1.0.0.1
-for /f "delims=" %%v in ('pids.exe') do %%v
-if "%ProcessName3%" == "explorer.exe" timeout /t 5
+:: pids.exe is a quick util whipped up with copilot to get nested process ancestor names
+:: so scripting can know whether launched from explorer.exe and hold the console open to view any output
+:: github repo: https://github.com/Beej126/pids/releases
+for /f %%v in ('pids.exe -name -level 3') do if "%%v" == "explorer.exe" timeout /t 5

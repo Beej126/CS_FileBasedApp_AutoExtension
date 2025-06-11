@@ -1,5 +1,10 @@
 Console.WriteLine("hello world!");
 
+#pragma warning disable CA1416
+// Print the console window title
+Console.WriteLine("Console Title: " + Console.Title);
+#pragma warning restore CA1416
+
 Console.WriteLine("");
 
 Console.WriteLine("Arguments: ");
@@ -7,3 +12,4 @@ foreach (var arg in args)
 {
     Console.WriteLine(arg);
 }
+
